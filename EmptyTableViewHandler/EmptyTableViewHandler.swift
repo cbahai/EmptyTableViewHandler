@@ -13,7 +13,7 @@ public class EmptyTableViewHandler: NSObject {
     private weak var tableViewDataSource: UITableViewDataSource?
     private weak var tableViewDelegate: UITableViewDelegate?
     private weak var tableView: UITableView!
-    private var emptyCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private var emptyView = UIView()
     
     public init(handle tableView: UITableView) {
         super.init()
@@ -22,8 +22,8 @@ public class EmptyTableViewHandler: NSObject {
         self.tableView = tableView
     }
     
-    public func reloadData(with emptyCell: UITableViewCell, isJudgeEmpty: Bool? = nil) {
-        self.emptyCell = emptyCell
+    public func reloadData(with emptyView: UIView, isJudgeEmpty: Bool? = nil) {
+        self.emptyView = emptyView
         
         let isEmpty: Bool
         
@@ -50,6 +50,18 @@ public class EmptyTableViewHandler: NSObject {
         
         self.tableView.reloadData()
     }
+    
+    private func addEmptyView(to cell: UITableViewCell) {
+        if let emptyViewSuperview = self.emptyView.superview, emptyViewSuperview === cell.contentView {
+            return
+        }
+        
+        cell.contentView.addSubview(self.emptyView)
+        self.emptyView.translatesAutoresizingMaskIntoConstraints = false
+        let views: [String: Any] = ["view": self.emptyView]
+        cell.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        cell.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+    }
 }
 
 extension EmptyTableViewHandler: UITableViewDataSource {
@@ -62,16 +74,35 @@ extension EmptyTableViewHandler: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return self.emptyCell
+        let identifier = "*^$^EmptyTableViewCell^&^*"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell(style: .default, reuseIdentifier: identifier)
+        self.addEmptyView(to: cell)
+        return cell
     }
 }
 
 extension EmptyTableViewHandler: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let residueHeight = tableView.bounds.height - (tableView.tableHeaderView?.bounds.height ?? 0) - (tableView.tableFooterView?.bounds.height ?? 0)
-        if residueHeight < self.emptyCell.bounds.height {
-            return self.emptyCell.bounds.height
+        if residueHeight < self.emptyView.bounds.height {
+            return self.emptyView.bounds.height
         }
         return residueHeight
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.tableViewDelegate?.tableView?(tableView, heightForHeaderInSection: section) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return self.tableViewDelegate?.tableView?(tableView, heightForFooterInSection: section) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.tableViewDelegate?.tableView?(tableView, viewForHeaderInSection: section)
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return self.tableViewDelegate?.tableView?(tableView, viewForFooterInSection: section)
     }
 }
