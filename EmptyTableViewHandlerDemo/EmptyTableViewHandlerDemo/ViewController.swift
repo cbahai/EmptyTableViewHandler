@@ -12,18 +12,16 @@ import EmptyTableViewHandler
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var sectionHeaderView: UIView!
+    @IBOutlet var emptyView: UIView!
     
     var emptyTableViewHandler: EmptyTableViewHandler!
     
-    var emptyCell: UITableViewCell!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let emptyCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        emptyCell.contentView.backgroundColor = UIColor.yellow
         
         self.emptyTableViewHandler = EmptyTableViewHandler(handle: self.tableView)
-        self.emptyTableViewHandler.reloadData(with: emptyCell)
+        self.emptyTableViewHandler.reloadData(with: self.emptyView)
     }
 }
 
@@ -33,7 +31,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,5 +42,13 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.sectionHeaderView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.sectionHeaderView.bounds.height
     }
 }
