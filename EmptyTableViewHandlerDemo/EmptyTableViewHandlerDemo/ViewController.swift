@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.emptyTableViewHandler = EmptyTableViewHandler(handle: self.tableView)
+        self.emptyTableViewHandler = EmptyTableViewHandler(tableView: self.tableView)
         self.emptyTableViewHandler.reloadData(with: self.emptyView)
     }
 }

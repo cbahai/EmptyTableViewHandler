@@ -22,6 +22,6 @@ import EmptyTableViewHandler
 ```
 
 ```swift
-self.emptyTableViewHandler = EmptyTableViewHandler(handle: self.tableView)
+self.emptyTableViewHandler = EmptyTableViewHandler(tableView: self.tableView)
 self.emptyTableViewHandler.reloadData(with: self.emptyView)
 ```

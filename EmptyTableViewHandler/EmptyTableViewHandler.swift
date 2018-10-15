@@ -15,14 +15,25 @@ public class EmptyTableViewHandler: NSObject {
     private weak var tableView: UITableView!
     private var emptyView = UIView()
     
-    public init(handle tableView: UITableView) {
+    @objc
+    public init(tableView: UITableView) {
         super.init()
         self.tableViewDataSource = tableView.dataSource
         self.tableViewDelegate = tableView.delegate
         self.tableView = tableView
     }
     
-    public func reloadData(with emptyView: UIView, isJudgeEmpty: Bool? = nil) {
+    @objc
+    public func reloadData(with emptyView: UIView) {
+        self._reloadData(with: emptyView, isJudgeEmpty: nil)
+    }
+    
+    @objc
+    public func reloadData(with emptyView: UIView, isJudgeEmpty: Bool) {
+        self._reloadData(with: emptyView, isJudgeEmpty: isJudgeEmpty)
+    }
+    
+    private func _reloadData(with emptyView: UIView, isJudgeEmpty: Bool? = nil) {
         self.emptyView = emptyView
         
         let isEmpty: Bool
