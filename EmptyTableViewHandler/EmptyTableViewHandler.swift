@@ -10,6 +10,9 @@ import UIKit
 
 public class EmptyTableViewHandler: NSObject {
     
+    public weak var sectionHeaderView: UIView?
+    public weak var sectionFooterView: UIView?
+    
     private weak var tableViewDataSource: UITableViewDataSource?
     private weak var tableViewDelegate: UITableViewDelegate?
     private weak var tableView: UITableView!
@@ -102,18 +105,30 @@ extension EmptyTableViewHandler: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let sectionHeaderView = self.sectionHeaderView {
+            return sectionHeaderView.bounds.height
+        }
         return self.tableViewDelegate?.tableView?(tableView, heightForHeaderInSection: section) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if let sectionFooterView = self.sectionFooterView {
+            return sectionFooterView.bounds.height
+        }
         return self.tableViewDelegate?.tableView?(tableView, heightForFooterInSection: section) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let sectionHeaderView = self.sectionHeaderView {
+            return sectionHeaderView
+        }
         return self.tableViewDelegate?.tableView?(tableView, viewForHeaderInSection: section)
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if let sectionFooterView = self.sectionFooterView {
+            return sectionFooterView
+        }
         return self.tableViewDelegate?.tableView?(tableView, viewForFooterInSection: section)
     }
 }
