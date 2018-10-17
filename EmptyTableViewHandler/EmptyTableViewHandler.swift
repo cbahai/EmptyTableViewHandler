@@ -10,13 +10,16 @@ import UIKit
 
 public class EmptyTableViewHandler: NSObject {
     
-    public weak var sectionHeaderView: UIView?
-    public weak var sectionFooterView: UIView?
-    
     private weak var tableViewDataSource: UITableViewDataSource?
     private weak var tableViewDelegate: UITableViewDelegate?
     private weak var tableView: UITableView!
     private var emptyView = UIView()
+    
+    @objc
+    public weak var sectionHeaderView: UIView?
+    
+    @objc
+    public weak var sectionFooterView: UIView?
     
     @objc
     public init(tableView: UITableView) {
