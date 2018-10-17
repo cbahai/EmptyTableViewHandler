@@ -59,12 +59,36 @@
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="xW6-bL-639">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="348"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TableHeaderView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ot-T5-tQa">
+                                            <rect key="frame" x="120.5" y="164" width="134" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.14117647059999999" green="0.5450980392" blue="0.039215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="3Ot-T5-tQa" firstAttribute="centerX" secondItem="xW6-bL-639" secondAttribute="centerX" id="YYd-yn-0rX"/>
+                                        <constraint firstItem="3Ot-T5-tQa" firstAttribute="centerY" secondItem="xW6-bL-639" secondAttribute="centerY" id="ddi-7e-X0d"/>
+                                    </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="dqa-B8-7I4">
                                     <rect key="frame" x="0.0" y="420" width="375" height="147"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TableFooterView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc3-Ms-dfs">
+                                            <rect key="frame" x="123.5" y="63" width="128" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.96078431369999995" green="0.37254901959999998" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="Vc3-Ms-dfs" firstAttribute="centerX" secondItem="dqa-B8-7I4" secondAttribute="centerX" id="WyI-EA-Ngq"/>
+                                        <constraint firstItem="Vc3-Ms-dfs" firstAttribute="centerY" secondItem="dqa-B8-7I4" secondAttribute="centerY" id="iFO-5H-XGH"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Xg4-hX-gYf">
@@ -93,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="emptyView" destination="HhB-k1-Y4k" id="LRv-34-w0z"/>
+                        <outlet property="sectionFooterView" destination="ryk-cf-lBA" id="1jh-qC-xFd"/>
                         <outlet property="sectionHeaderView" destination="Emx-7y-hEh" id="hdp-yt-Kdi"/>
                         <outlet property="tableView" destination="h9m-hg-7qz" id="W4d-2t-6tB"/>
                     </connections>
@@ -151,6 +176,23 @@
                     <constraints>
                         <constraint firstItem="5Lz-1V-AqQ" firstAttribute="centerX" secondItem="Emx-7y-hEh" secondAttribute="centerX" id="Drl-Mj-EJh"/>
                         <constraint firstItem="5Lz-1V-AqQ" firstAttribute="centerY" secondItem="Emx-7y-hEh" secondAttribute="centerY" id="NZE-oJ-QyX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="ryk-cf-lBA">
+                    <rect key="frame" x="0.0" y="0.0" width="482" height="55"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SectionFooter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9V-EZ-wwR">
+                            <rect key="frame" x="187" y="17" width="108" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.55857555917500001" green="0.60493164059166671" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="n9V-EZ-wwR" firstAttribute="centerX" secondItem="ryk-cf-lBA" secondAttribute="centerX" id="g23-kE-KUI"/>
+                        <constraint firstItem="n9V-EZ-wwR" firstAttribute="centerY" secondItem="ryk-cf-lBA" secondAttribute="centerY" id="lUy-qL-0uU"/>
                     </constraints>
                 </view>
             </objects>
