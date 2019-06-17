@@ -94,6 +94,7 @@ extension EmptyTableViewHandler: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "*^$^EmptyTableViewCell^&^*"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ?? UITableViewCell(style: .default, reuseIdentifier: identifier)
+        cell.selectionStyle = .none
         self.addEmptyView(to: cell)
         return cell
     }
