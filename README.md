@@ -1,5 +1,5 @@
 # EmptyTableViewHandler
-handle UItableView when data is empty
+handle UITableView when data is empty
 
 ## Requirements
 
