@@ -69,10 +69,11 @@ public class EmptyTableViewHandler: NSObject {
     }
     
     private func addEmptyView(to cell: UITableViewCell) {
-        if let emptyViewSuperview = self.emptyView.superview, emptyViewSuperview === cell.contentView {
+        if cell.contentView.subviews.contains(self.emptyView) {
             return
         }
         
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         cell.contentView.addSubview(self.emptyView)
         self.emptyView.translatesAutoresizingMaskIntoConstraints = false
         let views: [String: Any] = ["view": self.emptyView]
