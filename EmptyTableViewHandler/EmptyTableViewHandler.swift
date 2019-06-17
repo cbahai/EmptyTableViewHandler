@@ -137,3 +137,9 @@ extension EmptyTableViewHandler: UITableViewDelegate {
         return self.tableViewDelegate?.tableView?(tableView, viewForFooterInSection: section)
     }
 }
+
+extension EmptyTableViewHandler: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.tableViewDelegate?.scrollViewDidScroll?(scrollView)
+    }
+}
